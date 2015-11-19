@@ -20,7 +20,6 @@
     
     <!-- Custom styles -->
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,6 +27,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
     <!-- Fav and touch icons -->
     <!-- Update these with your own images
       <link rel="shortcut icon" href="images/favicon.ico">
@@ -43,49 +44,82 @@
   </head>
 
   <body>
-    <div id="wrap">
-      <nav class="navbar navbar-default" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+   
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          {% if page.url == "/index.html" %}
+          <a class="blog-nav-item active" href="{{ BASE_PATH }}/index.html" class="active">{{page.title}}</a>
+          {% else %}
+          <a class="blog-nav-item" href="{{ BASE_PATH }}/index.html">Início</a>
+          {% endif %}
+          {% assign pages_list = site.pages %}
+          {% assign group = 'navigation' %}
+          {% include JB/pages_list %}
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">{{ site.title }}</h1>
+        {% if site.tagline %}
+          <p class="lead blog-description">{{ site.tagline }}</p>
+        {% endif %}
+      </div>
+
+      <div class="col-sm-8 blog-main">
+       {{ content }}
+      </div><!-- /.blog-main -->
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+          <h4><a href="{{ BASE_PATH }}/about.html">Sobre</a></h4>
+          <div>
+            <img class="img-rounded" src="http://www.gravatar.com/avatar/455386412a8e3c86732576b5a9b1f0ad?s=170" alt="Natan" title="Natan"/>
+          </div>
+          <p>
+            {{ site.description }}
+          </p>
         </div>
+        <div class="sidebar-module">
+          <h4><a href="{{ BASE_PATH }}/archive.html"><i class="fa fa-folder-open"></i> Arquivo</a></h4>
+            {% include JB/setup %}
+            {% assign posts_collate = site.posts %}
+            {% include JB/posts_collate %}
+        </div>
+        <div class="sidebar-module">
+          <h4><a href="{{ BASE_PATH }}/categories.html"><i class="fa fa-tag"></i> Categorias</a></h4>
+          {% assign categories_list = site.categories %}
+          {% include JB/categories_list %}
+        </div>
+        <div class="sidebar-module">
+          <h4><a href="{{ BASE_PATH }}/tags.html"><i class="fa fa-tags"></i> Tags</a></h4>
+          {% assign tags_list = site.tags %}  
+          {% include JB/tags_list %}
+        </div>
+        <div class="sidebar-module">
+          <h4><a href="{{ BASE_PATH }}/about.html#links">Links</a></h4>
+          <ol class="list-unstyled">
+            <li><a href="https://github.com/{{ site.author.github }}"><i class="fa fa-github"></i> Github</a></li>
+            <li><a href="https://facebook.com/{{ site.author.facebook }}"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+            <li><a href="https://plus.google.com/{{ site.author.google.plus }}"><i class="fa fa-google-plus"></i> Google Plus</a></li>
+            <li><a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id={{ site.author.lattes }}"><span><img src="{{ BASE_PATH }}/assets/lattes.svg"/></span> Lattes</a></li>
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
+    </div><!-- /.container -->
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
-          <ul class="nav navbar-nav">
-            {% assign pages_list = site.pages %}
-            {% assign group = 'navigation' %}
-            {% include JB/pages_list %}
-          </ul>
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-        </div><!-- /.navbar-collapse -->
-      </nav>
 
-      <div class="container">
-        {{ content }}
-      </div>
-
-    </div>
-
-    <div id="footer">
-      <div class="container">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
-        </p>
-      </div>
-    </div>
+    <footer class="blog-footer">
+      <p>Natan de Almeida Laverde - 2015</p>
+      <p>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.pt"><i class="fa fa-creative-commons"></i> Conteúdo sob licença Creative Commons CC BY 4.0.</a> 
+      </p>
+      <p>
+        <a href="#">Voltar ao topo.</a>
+      </p>
+    </footer>
 
     {% include JB/analytics %}
 

@@ -1,4 +1,73 @@
-<div class="page-header">
+  <div class="blog-post">
+    <h2 class="blog-post-title">{{ page.title }}  {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h2>
+    <p class="blog-post-meta">
+      <!-- {{ page.date | date_to_long_string }} -->
+      {% include date_format %}  
+    </p>
+
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <div class="row">
+      {% unless page.categories == empty %}
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <i class="fa fa-tag"></i> Categorias:
+          </div>
+          <div class="panel-body">
+            <ul>
+              {% assign categories_list = page.categories %}
+              {% include JB/categories_list %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endunless %}  
+
+      {% unless page.tags == empty %}
+        <div class="col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <i class="fa fa-tags"></i> Tags:
+            </div>
+            <div class="panel-body">
+              <ul>
+                {% assign tags_list = page.tags %}
+                {% include JB/tags_list %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endunless %}  
+    </div>
+
+
+  </div><!-- /.blog-post -->
+
+  <nav>
+    <ul class="pager">
+      {% if page.previous %}
+        <li><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&laquo; Anterior</a></li>
+      {% else %}
+        <li class="disabled"><a>&larr; Anterior</a></li>
+      {% endif %}
+        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Arquivo</a></li>
+      {% if page.next %}
+        <li><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Próximo &raquo;</a></li>
+      {% else %}
+        <li class="disabled"><a>Próximo &rarr;</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+    <hr>
+ 
+    {% include JB/comments %}
+
+
+
+<!-- <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 </div>
 
@@ -45,3 +114,4 @@
     {% include JB/comments %}
   </div>
 </div>
+ -->
