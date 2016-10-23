@@ -17,7 +17,7 @@
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Sticky Footer -->
     <link href="{{ ASSET_PATH }}/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
-    
+
     <!-- Custom styles -->
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,7 +28,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    
+
     <!-- Fav and touch icons -->
     <!-- Update these with your own images
       <link rel="shortcut icon" href="images/favicon.ico">
@@ -41,10 +41,13 @@
     <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
   </head>
 
   <body>
-   
+
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
@@ -95,7 +98,7 @@
         </div>
         <div class="sidebar-module">
           <h4><a href="{{ BASE_PATH }}/tags.html"><i class="fa fa-tags"></i> Tags</a></h4>
-          {% assign tags_list = site.tags %}  
+          {% assign tags_list = site.tags %}
           {% include JB/tags_list %}
         </div>
         <div class="sidebar-module">
@@ -114,7 +117,7 @@
     <footer class="blog-footer">
       <p>Natan de Almeida Laverde - 2015</p>
       <p>
-        <a href="http://creativecommons.org/licenses/by/4.0/deed.pt"><i class="fa fa-creative-commons"></i> Conteúdo sob licença Creative Commons CC BY 4.0.</a> 
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.pt"><i class="fa fa-creative-commons"></i> Conteúdo sob licença Creative Commons CC BY 4.0.</a>
       </p>
       <p>
         <a href="#">Voltar ao topo.</a>
