@@ -89,7 +89,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : natanlaverde
+      short_name : natanlaverde-github-io
     # livefyre :
     #   site_id : 123
     # intensedebate :
@@ -106,7 +106,7 @@ JB :
   # Set 'provider' to false to turn analytics off globally.
   #
   analytics :
-    provider : google
+    provider : google-
     google :
         tracking_id : 'UA-4494400-2'
 
